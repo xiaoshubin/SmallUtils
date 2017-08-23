@@ -55,6 +55,8 @@ public class MobileUtils {
         return szImei;
     }
 
+
+
     /**
      * TODO 4.获取设备的【WLAN】的MAC地址
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
@@ -71,7 +73,7 @@ public class MobileUtils {
         if (!"02:00:00:00:00:00".equals(macAddress)) {
             return macAddress;
         }
-        macAddress = getMacAddressByFile();
+         macAddress = getMacAddressByFile();
         if (!"02:00:00:00:00:00".equals(macAddress)) {
             return macAddress;
         }
@@ -104,7 +106,8 @@ public class MobileUtils {
      *
      * @return MAC地址
      */
-    private static String getMacAddressByNetworkInterface() { L.i("通过getMacAddressByNetworkInterface详情获取mac地址");
+    private static String getMacAddressByNetworkInterface() {
+        L.i("通过getMacAddressByNetworkInterface详情获取mac地址");
         try {
             List<NetworkInterface> nis = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface ni : nis) {
@@ -171,6 +174,16 @@ public class MobileUtils {
     /**
      * 是否是在root下执行命令
      *
+     * @param command 命令
+     * @param isRoot  是否需要root权限执行
+     * @return CommandResult
+     */
+    public static CommandResult execCmd(final String command, final boolean isRoot) {
+        return execCmd(new String[]{command}, isRoot, true);
+    }
+    /**
+     * 是否是在root下执行命令
+     *
      * @param commands        命令数组
      * @param isRoot          是否需要root权限执行
      * @param isNeedResultMsg 是否需要结果消息
@@ -228,7 +241,6 @@ public class MobileUtils {
     }
     /**
      * 关闭IO
-     *
      * @param closeables closeables
      */
     public static void closeIO(final Closeable... closeables) {
@@ -243,18 +255,6 @@ public class MobileUtils {
             }
         }
     }
-
-    /**
-     * 是否是在root下执行命令
-     *
-     * @param command 命令
-     * @param isRoot  是否需要root权限执行
-     * @return CommandResult
-     */
-    public static CommandResult execCmd(final String command, final boolean isRoot) {
-        return execCmd(new String[]{command}, isRoot, true);
-    }
-
 
 
 }
