@@ -12,10 +12,7 @@ import android.support.v4.os.CancellationSignal;
 
 
 /**
- * MyApplication --  com.smallcake.utils
- * Created by Small Cake on  2017/8/23 13:41.
- * Android指纹识别
- * 需要加入权限
+ * Android指纹识别,需要加入权限
  * <uses-permission android:name="android.permission.USE_FINGERPRINT" />
  */
 @RequiresApi(api = Build.VERSION_CODES.M)
