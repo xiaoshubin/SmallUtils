@@ -21,6 +21,8 @@ public class FingerprintUtil {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void callFingerPrint(final Context context, final OnCallBackListenr listener) {
         FingerprintManagerCompat managerCompat = FingerprintManagerCompat.from(context);
+
+
         if (!managerCompat.isHardwareDetected()) { //判断设备是否支持
             listener.onFailed("当前设备不支持指纹解锁！");
             return;
