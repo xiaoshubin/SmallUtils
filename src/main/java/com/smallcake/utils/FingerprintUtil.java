@@ -64,8 +64,8 @@ public class FingerprintUtil {
     }
 
     public interface OnCallBackListenr {
-        void onError(int errMsgId, CharSequence errString);
-        void onFailed(CharSequence errString);
+        void onError(int errMsgId, CharSequence errString);//多次失败，不再触发指纹识别，可考虑关闭或进入连线密码
+        void onFailed(CharSequence errString);//指纹识别失败
         void onSucceeded(FingerprintManagerCompat.AuthenticationResult result);
     }
 
