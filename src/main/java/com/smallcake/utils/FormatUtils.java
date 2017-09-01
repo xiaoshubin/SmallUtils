@@ -11,10 +11,10 @@ import android.text.format.Formatter;
 public class FormatUtils {
     /**
      * 工具类 根据文件大小自动转化为KB, MB, GB
-     * @param target_size
+     * @param sizeBytes long
      * @return
      */
-    public static String formatSize(Context context,String target_size) {
-        return Formatter.formatFileSize(context, Long.valueOf(target_size));
+    public static String formatSize(Context context,long sizeBytes) {
+        return Formatter.formatFileSize(context, sizeBytes);
     }
 }

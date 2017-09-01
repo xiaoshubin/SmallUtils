@@ -12,24 +12,31 @@ import java.io.File;
 
 public class SdUtils {
     /**
-     * sd卡路径
-     * @return
+     * sd卡获取根目录路径
+     * @return /storage/emulated/0/
      */
-    public static File getPathFile() {
-        return Environment.getExternalStorageDirectory();
+    public static String getRootPath() {
+        return Environment.getExternalStorageDirectory()+ File.separator;
+    }
+    /**
+     * sd卡获取下载路径
+     * @return /storage/emulated/0/Download/
+     */
+    public static String getDownloadPath() {
+        return Environment.getExternalStorageDirectory()+ File.separator + Environment.DIRECTORY_DOWNLOADS+ File.separator;
     }
 
     /**
-     *  Sd卡下载路径
-     * @return
+     * 相机存放图片路径
+     * @return /storage/emulated/0/DCIM/Camera/
      */
-    public static File getDownloadPathFile() {
-        return Environment.getDownloadCacheDirectory();
+    public static String getCameraPath(){
+       return Environment.getExternalStorageDirectory()
+                + File.separator + Environment.DIRECTORY_DCIM
+                + File.separator + "Camera" + File.separator;
     }
 
-    public static File getDataPath(){
-        return Environment.getDataDirectory();
-    }
+
 
 
 }
