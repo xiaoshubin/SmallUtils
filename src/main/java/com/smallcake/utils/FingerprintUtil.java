@@ -73,13 +73,14 @@ public class FingerprintUtil {
      * 如果多次指纹解锁失败，调用此方法，跳转到【锁屏密码界面】
      * @param context
      * 如果锁屏秘密正确，需要再对应Activity中加入回调
-     * 注意: 判定条件一定要加 resultCode==RESULT_OK，否则用户按返回键也会说成功
+     * 注意: 回调判定条件一定要加 resultCode==RESULT_OK，否则用户按返回键也会说成功
      *
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
             if (requestCode==FingerprintUtil.REQUEST_CODE_CONFIRM_DEVICE_CREDENTIALS&&resultCode==RESULT_OK)L.i("连线密码锁解锁成功！");
         }
      */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static void setKeyguardLockScreenManager(Context context) {
         KeyguardManager keyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
         if (keyguardManager != null) {
@@ -96,5 +97,4 @@ public class FingerprintUtil {
             }
         }
     }
-
 }
