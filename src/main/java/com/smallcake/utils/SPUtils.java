@@ -3,7 +3,6 @@ package com.smallcake.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -105,10 +105,9 @@ public class SPUtils {
             String bytesToHexString = bytesToHexString(bos.toByteArray());
             //保存该16进制数组
             sharedata.putString(key, bytesToHexString);
-            sharedata.commit();
+            SharedPreferencesCompat.apply(sharedata);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("SPUtils", "保存obj失败");
         }
     }
 
@@ -265,7 +264,7 @@ public class SPUtils {
             sTemp = Integer.toHexString(0xFF & bArray[i]);
             if (sTemp.length() < 2)
                 sb.append(0);
-            sb.append(sTemp.toUpperCase());
+            sb.append(sTemp.toUpperCase(Locale.getDefault()));
         }
         return sb.toString();
     }

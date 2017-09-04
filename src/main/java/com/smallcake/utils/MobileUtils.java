@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
-import android.telephony.TelephonyManager;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -15,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * MyApplication --  com.smallcake.utils
@@ -43,16 +43,54 @@ public class MobileUtils {
     /**
      * TODO 3.获取手机唯一标识码
      * get phone unique
-     *
+     *<uses-permission android:name="android.permission.READ_PHONE_STATE" />
      * @param context
      * @return
-     * @remind Anroid 6.0 + need <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+     * @remind Anroid 6.0 + 需要动态申请此权限
      * 且此权限需要动态申请
      */
-    public static String getMobileUnique(Context context) {
-        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        String szImei = TelephonyMgr.getDeviceId();
-        return szImei;
+//    @java.lang.Deprecated
+//    public static String getMobileUnique(Context context) {
+//        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//        String szImei = TelephonyMgr.getDeviceId();
+//        return szImei;
+//    }
+
+    /**
+     * 更好的获取手机唯一标示码
+     * API >=9即可，且不需要权限
+     * @return
+     */
+    public static String getPseudoUnique(){
+
+        String serial = null;
+
+        String m_szDevIDShort = "35" +
+                Build.BOARD.length()%10+ Build.BRAND.length()%10 +
+
+                Build.CPU_ABI.length()%10 + Build.DEVICE.length()%10 +
+
+                Build.DISPLAY.length()%10 + Build.HOST.length()%10 +
+
+                Build.ID.length()%10 + Build.MANUFACTURER.length()%10 +
+
+                Build.MODEL.length()%10 + Build.PRODUCT.length()%10 +
+
+                Build.TAGS.length()%10 + Build.TYPE.length()%10 +
+
+                Build.USER.length()%10 ; //13 位
+
+        try {
+            serial = android.os.Build.class.getField("SERIAL").get(null).toString();
+            //API>=9 使用serial号
+            return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
+        } catch (Exception exception) {
+            //serial需要一个初始化
+            serial = "serial"; // 随便一个初始化
+        }
+        //使用硬件信息拼凑出来的15位号码
+        return new UUID(m_szDevIDShort.hashCode(), serial.hashCode()).toString();
+
     }
 
 
@@ -90,7 +128,7 @@ public class MobileUtils {
         L.i("通过getMacAddressByWifiInfo详情获取mac地址");
         try {
             @SuppressLint("WifiManagerLeak")
-            WifiManager wifi = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+            WifiManager wifi = (WifiManager)context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
             if (wifi != null) {
                 WifiInfo info = wifi.getConnectionInfo();
                 if (info != null) return info.getMacAddress();

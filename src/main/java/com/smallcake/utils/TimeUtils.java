@@ -2,6 +2,8 @@ package com.smallcake.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
 public class TimeUtils {
     /**
      * 时间戳 转 String类型的精确到时分秒
@@ -9,7 +11,7 @@ public class TimeUtils {
      * @return
      */
     public static String tsToMs(int time) {
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         long time1000 = Long.parseLong(String.valueOf(time)) * 1000;
         return fm.format(time1000);
     }
@@ -19,7 +21,7 @@ public class TimeUtils {
      * @return
      */
     public static String tsToYMD(int time) {
-        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         long time1000 = Long.parseLong(String.valueOf(time)) * 1000;
         return fm.format(time1000);
     }
@@ -29,7 +31,7 @@ public class TimeUtils {
      */
     public static String getTodayDate() {
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         return sdf.format(date);
     }
 
@@ -38,7 +40,7 @@ public class TimeUtils {
      * @return 2017/04/07-11:01:06:109
      */
     public static String getMillisecondTime() {
-        return new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date());
+        return new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS", Locale.CHINA).format(new Date());
     }
     /**
      * 获取当前系统的时间戳

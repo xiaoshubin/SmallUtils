@@ -2,6 +2,7 @@ package com.smallcake.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 /**
  * MD5 Utils
@@ -24,7 +25,7 @@ public class MD5Utils {
         return resultString;
     }
     public static String encrypt32Up(String strObj){
-        return encrypt32(strObj).toUpperCase();
+        return encrypt32(strObj).toUpperCase(Locale.getDefault());
     }
     public static String encrypt16(String strObj){
         return encrypt32(strObj).substring(8,24);
