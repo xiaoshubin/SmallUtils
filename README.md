@@ -1,8 +1,10 @@
 # SmallUtils 
-<a href='https://bintray.com/xiaoshubin/maven/small-utils?source=watch' alt='Get automatic notifications about new "small-utils" versions'><img src='https://www.bintray.com/docs/images/bintray_badge_color.png'></a>
+[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[ ![Download](https://api.bintray.com/packages/xiaoshubin/maven/small-utils/images/download.svg?version=1.0.0) ](https://bintray.com/xiaoshubin/maven/small-utils/1.0.0/link)
+
 some small utils for rapid development
 
-# Gradle 
+# Android Gradle 
 ```
 compile 'com.smallcake.utils:small-utils:1.0.0'
 ```
