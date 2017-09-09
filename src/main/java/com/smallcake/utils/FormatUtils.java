@@ -10,11 +10,21 @@ import android.text.format.Formatter;
 
 public class FormatUtils {
     /**
-     * 工具类 根据文件大小自动转化为KB, MB, GB
+     * trans KB, MB, GB
      * @param sizeBytes long
-     * @return
+     * @return 47kb,4.70M,1.47GB
      */
     public static String formatSize(Context context,long sizeBytes) {
         return Formatter.formatFileSize(context, sizeBytes);
+    }
+
+    /**
+     *  trans 47%
+     * @param currentLength
+     * @param totalLength
+     * @return 47
+     */
+    public static int getProgress(long currentLength,long totalLength){
+        return (int) ((currentLength*100)/totalLength);
     }
 }

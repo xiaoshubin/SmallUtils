@@ -9,6 +9,7 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 public class AppUtils {
     /**
@@ -102,6 +103,27 @@ public class AppUtils {
         }
         context.startActivity(intent);
 
+    }
+
+    /**
+     * get main module BuildConfig values
+     * @param context
+     * @param fieldName
+     * @return
+     */
+    public static Object getBuildConfigValue(Context context, String fieldName) {
+        try {
+            Class<?> clazz = Class.forName(context.getPackageName() + ".BuildConfig");
+            Field field = clazz.getField(fieldName);
+            return field.get(null);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
