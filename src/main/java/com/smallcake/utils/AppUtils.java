@@ -92,6 +92,7 @@ public class AppUtils {
     public static  void installApk(Context context,String downloadApk) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         File file = new File(downloadApk);
+        L.i("安装路径=="+downloadApk);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Uri apkUri = FileProvider.getUriForFile(context, AppUtils.getAppPackageName(context)+".fileprovider", file);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
