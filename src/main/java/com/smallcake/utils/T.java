@@ -14,29 +14,29 @@ public class T {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    public static void showLong(Context context, Object message) {
-        show(context,message,Toast.LENGTH_LONG);
+    public static void showLong( Object message) {
+        show(SmallUtils.getApp(),message,Toast.LENGTH_LONG);
     }
-    public static void showShort(Context context, Object message) {
-        show(context,message,Toast.LENGTH_SHORT);
+    public static void showShort( Object message) {
+        show(SmallUtils.getApp(),message,Toast.LENGTH_SHORT);
     }
 
-    public static void showGravityLong(Context context, Object message, int gravity) {
-       showGravity(context,message,gravity,Toast.LENGTH_LONG);
+    public static void showGravityLong( Object message, int gravity) {
+       showGravity(SmallUtils.getApp(),message,gravity,Toast.LENGTH_LONG);
     }
-    public static void showGravityShort(Context context, Object message, int gravity) {
-       showGravity(context,message,gravity,Toast.LENGTH_SHORT);
+    public static void showGravityShort( Object message, int gravity) {
+       showGravity(SmallUtils.getApp(),message,gravity,Toast.LENGTH_SHORT);
     }
 
 
 
     private static void show(Context context,Object message,int duration){
         if (message instanceof String){
-            Toast.makeText(context,(String)message, duration).show();
+            Toast.makeText(SmallUtils.getApp(),(String)message, duration).show();
         }else if (message instanceof Integer){
-            Toast.makeText(context,(int)message, duration).show();
+            Toast.makeText(SmallUtils.getApp(),(int)message, duration).show();
         }else if (message instanceof CharSequence){
-            Toast.makeText(context,(CharSequence)message, duration).show();
+            Toast.makeText(SmallUtils.getApp(),(CharSequence)message, duration).show();
         }else{
             printErr(message);
         }
@@ -44,11 +44,11 @@ public class T {
     private static void showGravity(Context context,Object message, int gravity,int duration){
         Toast toast = null;
         if (message instanceof String){
-            toast = Toast.makeText(context,(String)message, duration);
+            toast = Toast.makeText(SmallUtils.getApp(),(String)message, duration);
         }else if (message instanceof Integer){
-            toast = Toast.makeText(context,(int)message, duration);
+            toast = Toast.makeText(SmallUtils.getApp(),(int)message, duration);
         }else if (message instanceof CharSequence){
-            toast = Toast.makeText(context,(CharSequence)message, duration);
+            toast = Toast.makeText(SmallUtils.getApp(),(CharSequence)message, duration);
         }else{
             printErr(message);
             return;

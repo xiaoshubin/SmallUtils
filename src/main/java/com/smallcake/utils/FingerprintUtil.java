@@ -92,7 +92,7 @@ public class FingerprintUtil {
                     ((Activity)context).startActivityForResult(intent, REQUEST_CODE_CONFIRM_DEVICE_CREDENTIALS);
                 }
             } else {
-                T.showLong(context,"系统没有设置锁屏密码，请设置！");
+                T.showLong("系统没有设置锁屏密码，请设置！");
                 context.startActivity(new Intent("android.settings.SETTINGS").setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         }
