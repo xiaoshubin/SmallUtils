@@ -18,10 +18,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * 点赞
+ * 点赞效果:
+ * +1 文字
+ * GoodView txt = new GoodView(this);
+ * txt.setText("+1");
+ * txt.show(view);
+ * ★ 图片效果
+ * GoodView img = new GoodView(this);
+ * img.setImage(R.mipmap.star);
+ * img.show(view);
  */
 
 public class GoodView extends PopupWindow  {
+
 
     int DISTANCE = 60;   // 默认移动距离
     int FROM_Y_DELTA = 0; // Y轴移动起始偏移量
