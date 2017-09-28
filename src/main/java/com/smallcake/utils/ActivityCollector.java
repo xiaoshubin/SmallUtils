@@ -21,6 +21,11 @@ public class ActivityCollector {
         activities.remove(activity);
     }
 
+    public static <T extends Activity>void finishActivity(Class<T> activity) {
+        if (activities!=null&&activities.size()>0)for (Activity a:activities){
+            if ((a.getClass().getName()).equals(activity.getName()))a.finish();
+        }
+    }
     public static void finishAll() {
         for (Activity activity : activities) {
             if (!activity.isFinishing()) activity.finish();
