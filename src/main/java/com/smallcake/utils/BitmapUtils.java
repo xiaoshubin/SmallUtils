@@ -57,8 +57,7 @@ public class BitmapUtils {
      * @throws FileNotFoundException
      */
     public static void saveBitmap(Bitmap bitmap, String outPath) throws FileNotFoundException {
-        FileOutputStream os = new FileOutputStream(outPath);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(outPath));
     }
 
     /**
@@ -66,8 +65,7 @@ public class BitmapUtils {
      * @param bitmap
      */
     public static void printBitmapSize(Bitmap bitmap){
-        Log.i("BitmapUtils", "转为Bitmap后，压缩前图片的大小" + (bitmap.getByteCount() / 1024 / 1024)
-                + "M \n宽度为" + bitmap.getWidth() + "\n高度为" + bitmap.getHeight());
+        Log.i("BitmapUtils", "Bitmap的大小【" + bitmap.getByteCount() + "】byte 宽度【" + bitmap.getWidth() + "】高度【" + bitmap.getHeight()+"】");
     }
 
     /**
@@ -86,12 +84,6 @@ public class BitmapUtils {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
         byte[] bytes = baos.toByteArray();
-        Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-        Log.i("BitmapUtils", "压缩后图片的大小" + (bm.getByteCount() / 1024 / 1024)
-                + "M\n宽度为" + bm.getWidth() + "\n高度为" + bm.getHeight()
-                + "\nbytes.length =  " + (bytes.length / 1024) + "KB"
-                + "\nquality = " + quality);
         return bytes;
     }
 
@@ -114,11 +106,7 @@ public class BitmapUtils {
     public static Bitmap compressRate(Context context,int res, int inSampleSize){
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = inSampleSize;
-
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), res, options);
-
-        Log.i("BitmapUtils", "Bitmap压缩后图片的大小" + (bm.getByteCount() / 1024 / 1024)
-                + "M\n宽度为" + bm.getWidth() + "\n高度为" + bm.getHeight());
         return bm;
     }
 
@@ -135,15 +123,13 @@ public class BitmapUtils {
         Bitmap bit = setRGB_565(context, res);
         Matrix matrix = new Matrix();
         matrix.setScale(sx, sy);
-        Bitmap bm = Bitmap.createBitmap(bit, 0, 0, bit.getWidth(), bit.getHeight(), matrix, true);
-        return bm;
+        return Bitmap.createBitmap(bit, 0, 0, bit.getWidth(), bit.getHeight(), matrix, true);
     }
     public static Bitmap compressMatrix(String imgPath,float sx,float sy){
         Bitmap bit = setRGB_565(imgPath);
         Matrix matrix = new Matrix();
         matrix.setScale(sx, sy);
-        Bitmap bm = Bitmap.createBitmap(bit, 0, 0, bit.getWidth(), bit.getHeight(), matrix, true);
-        return bm;
+        return Bitmap.createBitmap(bit, 0, 0, bit.getWidth(), bit.getHeight(), matrix, true);
     }
 
     /**
@@ -154,14 +140,12 @@ public class BitmapUtils {
     public static Bitmap setRGB_565(Context context,int res){
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), res, options);
-        return bm;
+        return BitmapFactory.decodeResource(context.getResources(), res, options);
     }
-    public static Bitmap setRGB_565(String imgPath){
+    public static Bitmap setRGB_565(String pathName){
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
-        Bitmap bm = BitmapFactory.decodeFile(imgPath, options);
-        return bm;
+        return BitmapFactory.decodeFile(pathName, options);
     }
 
 
@@ -176,11 +160,10 @@ public class BitmapUtils {
      * 如果宽高和原图宽高比不同，图片还会被挤压和拉伸
      */
     public static Bitmap compressWH(Context context,int res,int witdh,int height){
-        Bitmap bitmap = setRGB_565(context, res);
-        Bitmap bm = Bitmap.createScaledBitmap(bitmap, witdh, height, true);
-        Log.i("BitmapUtils", "压缩后图片的大小" + (bm.getByteCount() / 1024) + "KB宽度为"
-                + bm.getWidth() + "高度为" + bm.getHeight());
-        return bm;
+       return Bitmap.createScaledBitmap(setRGB_565(context, res), witdh, height, true);
+    }
+    public static Bitmap compressWH(String pathName,int witdh,int height){
+        return Bitmap.createScaledBitmap(setRGB_565(pathName), witdh, height, true);
     }
 
 }
