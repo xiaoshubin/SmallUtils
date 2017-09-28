@@ -21,26 +21,27 @@ import android.widget.TextView;
  * 点赞
  */
 
-public class GoodView extends PopupWindow implements IGoodView {
+public class GoodView extends PopupWindow  {
 
+    int DISTANCE = 60;   // 默认移动距离
+    int FROM_Y_DELTA = 0; // Y轴移动起始偏移量
+    int TO_Y_DELTA = DISTANCE; // Y轴移动最终偏移量
+    float FROM_ALPHA = 1.0f;    // 起始时透明度
+    float TO_ALPHA = 0.0f;  // 结束时透明度
+    int DURATION = 1000; // 动画时长
+    String TEXT = ""; // 默认文本
+    int TEXT_SIZE = 16; // 默认文本字体大小
+    int TEXT_COLOR = Color.BLACK;   // 默认文本字体颜色
     private String mText = TEXT;
 
     private int mTextColor = TEXT_COLOR;
-
     private int mTextSize = TEXT_SIZE;
-
     private int mFromY = FROM_Y_DELTA;
-
     private int mToY = TO_Y_DELTA;
-
     private float mFromAlpha = FROM_ALPHA;
-
     private float mToAlpha = TO_ALPHA;
-
     private int mDuration = DURATION;
-
     private int mDistance = DISTANCE;
-
     private AnimationSet mAnimationSet;
 
     private boolean mChanged = false;
