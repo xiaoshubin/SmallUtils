@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * MyApplication --  com.smallcake.utils
  * Created by Small Cake on  2017/9/13 10:28.
+ * 必须初始化
  */
 
 public class SmallUtils {
@@ -82,7 +83,7 @@ public class SmallUtils {
      */
     public static Application getApp() {
         if (sApplication != null) return sApplication;
-        throw new NullPointerException("u should init first");
+        throw new NullPointerException("SmallUtils should init first");
     }
 
     private static void setTopActivityWeakRef(Activity activity) {

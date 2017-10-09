@@ -1,6 +1,8 @@
 package com.smallcake.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -15,6 +17,7 @@ public class TimeUtils {
         long time1000 = Long.parseLong(String.valueOf(time)) * 1000;
         return fm.format(time1000);
     }
+
     /**
      * 时间戳 转 String类型的年月日
      * @param time
@@ -49,4 +52,28 @@ public class TimeUtils {
     public static int getTime() {
         return (int) (System.currentTimeMillis() / 1000);
     }
+
+    public static String tsToYMDcn(int time) {
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy年MM月dd日");
+        long time1000 = Long.parseLong(String.valueOf(time)) * 1000;
+        return fm.format(time1000);
+    }
+
+    public static String getTodayAddMonthDate(int month) {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = null;
+        try {
+            now = sdf.parse(getTodayDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+            calendar.setTime(now);
+            calendar.add(Calendar.MONTH, month);
+            return sdf.format(calendar.getTime());
+
+
+    }
+
 }

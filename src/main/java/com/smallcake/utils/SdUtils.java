@@ -1,6 +1,10 @@
 package com.smallcake.utils;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 
 import java.io.File;
 
@@ -36,7 +40,19 @@ public class SdUtils {
                 + File.separator + "Camera" + File.separator;
     }
 
-
+    /**
+     * Uri photoUri = data.getData();
+     * 根据相册返回的Uri获取照片路径
+     * @return
+     */
+    public static String getResultPhotoPath(Context activity, Uri photoUri){
+        String[] filePathColumn={MediaStore.Audio.Media.DATA};
+        Cursor cursor=activity.getContentResolver().query(photoUri,filePathColumn,null,null,null);
+        cursor.moveToFirst();
+        String photoPath=cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+        cursor.close();
+        return photoPath;
+    }
 
 
 }

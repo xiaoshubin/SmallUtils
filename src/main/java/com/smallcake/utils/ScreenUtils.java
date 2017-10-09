@@ -45,14 +45,13 @@ public class ScreenUtils {
     /**
      * 获取电量栏高度
      *
-     * @param context
      * @return
      */
-    public static int getStatusHeight(Context context) {
+    public static int getStatusHeight() {
         int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int resourceId = SmallUtils.getApp().getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            result =  context.getResources().getDimensionPixelSize(resourceId);
+            result =   SmallUtils.getApp().getResources().getDimensionPixelSize(resourceId);
         }
         return result;
     }
@@ -109,6 +108,8 @@ public class ScreenUtils {
         lp.alpha = bgAlpha; //0.0-1.0
         context.getWindow().setAttributes(lp);
     }
+
+
 
 
 

@@ -14,21 +14,20 @@ import java.lang.reflect.Field;
 public class AppUtils {
     /**
      * get this App install package name
-     * @param context
      * @return  com.cake.page
      */
-    public static String getAppPackageName(Context context) {
-        return context.getApplicationInfo().packageName;
+    public static String getAppPackageName() {
+        return SmallUtils.getApp().getApplicationInfo().packageName;
     }
 
     /**
      * get string app version
      */
-    public static String getVersionName(Context context) {
+    public static String getVersionName() {
         String versionName = "";
         try {
-            PackageManager pm = context.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            PackageManager pm = SmallUtils.getApp().getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(SmallUtils.getApp().getPackageName(), 0);
             versionName = pi.versionName;
             if (versionName == null || versionName.length() <= 0) {
                 return "";
@@ -42,11 +41,11 @@ public class AppUtils {
     /**
      * get int app version
      */
-    public static int getVersionCode(Context context) {
+    public static int getVersionCode() {
         int versioncode = 0;
         try {
-            PackageManager pm = context.getPackageManager();
-            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            PackageManager pm = SmallUtils.getApp().getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(SmallUtils.getApp().getPackageName(), 0);
             versioncode = pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -94,7 +93,7 @@ public class AppUtils {
         File file = new File(downloadApk);
         L.i("安装路径=="+downloadApk);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Uri apkUri = FileProvider.getUriForFile(context, AppUtils.getAppPackageName(context)+".fileprovider", file);
+            Uri apkUri = FileProvider.getUriForFile(context, AppUtils.getAppPackageName()+".fileprovider", file);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
         } else {

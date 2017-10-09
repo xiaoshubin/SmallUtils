@@ -6,9 +6,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.util.Log;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 
 /**
  * MyApplication --  com.smallcake.utils
@@ -164,6 +167,27 @@ public class BitmapUtils {
     }
     public static Bitmap compressWH(String pathName,int witdh,int height){
         return Bitmap.createScaledBitmap(setRGB_565(pathName), witdh, height, true);
+    }
+    public static File compressImageReturnFile(String filePath, String targetPath, int quality)  {
+        Bitmap bm = setRGB_565(filePath);
+        File outputFile=new File(targetPath);
+        try {
+            if (!outputFile.exists()) {
+                outputFile.getParentFile().mkdirs();
+            }else{
+                outputFile.delete();
+            }
+            FileOutputStream out = new FileOutputStream(outputFile);
+            bm.compress(Bitmap.CompressFormat.JPEG, quality, out);
+        }catch (Exception e){}
+        return outputFile;
+    }
+
+    public static InputStream bitmapToInputStream(Bitmap bitmap){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        InputStream in = new ByteArrayInputStream(baos.toByteArray());
+        return in;
     }
 
 }

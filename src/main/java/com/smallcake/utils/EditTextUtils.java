@@ -24,6 +24,21 @@ public class EditTextUtils {
         return  isEmpty(null,editTexts);
     }
     /**
+     * 获取数据集合
+     * @param editTexts
+     * @return
+     */
+    public static String[] getEditTextInfos(EditText... editTexts) {
+        String [] infos = new String[editTexts.length];
+        for (int i = 0; i < editTexts.length; i++) {
+            String info = editTexts[i].getText().toString();
+            infos[i] = info;
+        }
+
+        return infos;
+
+    }
+    /**
      * 验证多个输入栏未输入，提示为：（"请填写" + 你xml设置的Hint字段）
      * @param editTexts 编辑框
      * @return 双项提示，编辑框警告提示，弹出提示
