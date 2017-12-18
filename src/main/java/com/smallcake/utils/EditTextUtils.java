@@ -58,8 +58,8 @@ public class EditTextUtils {
             }
             if (TextUtils.isEmpty(str)) {
                 if (!TextUtils.isEmpty(hintStr)){
-                    editText.setError("请填写" + hintStr);
-                    if (context!=null)T.showLong("请填写" + hintStr);
+                    editText.setError( hintStr);
+                    if (context!=null)T.showLong(hintStr);
                 }else{
                     editText.setError("未填写");
                     if (context!=null)T.showLong("有选项未填写");

@@ -59,8 +59,11 @@ public class BitmapUtils {
      * @param outPath
      * @throws FileNotFoundException
      */
-    public static void saveBitmap(Bitmap bitmap, String outPath) throws FileNotFoundException {
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(outPath));
+    public static boolean saveBitmap(Bitmap bitmap, String outPath) throws FileNotFoundException {
+        return bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(outPath));
+    }
+    public static boolean saveBitmapInCamera(Bitmap bitmap) throws FileNotFoundException {
+        return bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(SdUtils.getCameraPath()));
     }
 
     /**

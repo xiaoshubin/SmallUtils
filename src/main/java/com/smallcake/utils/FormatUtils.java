@@ -3,6 +3,8 @@ package com.smallcake.utils;
 import android.content.Context;
 import android.text.format.Formatter;
 
+import java.text.DecimalFormat;
+
 /**
  * MyApplication --  com.smallcake.utils
  * Created by Small Cake on  2017/8/15 14:05.
@@ -26,5 +28,16 @@ public class FormatUtils {
      */
     public static int getProgress(long currentLength,long totalLength){
         return (int) ((currentLength*100)/totalLength);
+    }
+
+    /**
+     * 1,000.00
+     * @param num
+     * @return
+     */
+    public static String qianweifenge(float num) {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String ss = df.format(num);
+        return ss;
     }
 }

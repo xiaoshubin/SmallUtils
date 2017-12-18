@@ -89,7 +89,7 @@ public class SPUtils {
      * @param obj
      * @remind 要保存的对象，只能保存实现了serializable的对象
      */
-    public static void putObject( String key, Object obj) {
+    public static void saveObject( String key, Object obj) {
         try {
             // 保存对象
             SharedPreferences.Editor sharedata = SmallUtils.getApp().getSharedPreferences(FILE_NAME, 0).edit();
@@ -116,7 +116,7 @@ public class SPUtils {
      * @param key
      * @return modified:
      */
-    public static <T extends Object> T getObject( String key) {
+    public static <T extends Object> T readObject( String key) {
         try {
             SharedPreferences sharedata = SmallUtils.getApp().getSharedPreferences(FILE_NAME, 0);
             if (sharedata.contains(key)) {

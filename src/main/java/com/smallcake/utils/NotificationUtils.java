@@ -60,5 +60,6 @@ public class NotificationUtils {
                 .setOngoing(true).build();
         notification.flags = Notification.FLAG_AUTO_CANCEL;
         manager.notify(0,notification);
+
     }
 }

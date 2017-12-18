@@ -3,6 +3,9 @@ package com.smallcake.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * 接受三种类型的msg
  * String ,int ,CharSequence
@@ -26,6 +29,24 @@ public class T {
     }
     public static void showGravityShort( Object message, int gravity) {
        showGravity(SmallUtils.getApp(),message,gravity,Toast.LENGTH_SHORT);
+    }
+
+    public static void showMyToast(String message, final int cnt) {
+        final Toast toast = Toast.makeText(SmallUtils.getApp(), message, Toast.LENGTH_LONG);
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.show();
+            }
+        }, 0, 3500);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                toast.cancel();
+                timer.cancel();
+            }
+        }, cnt );
     }
 
 
