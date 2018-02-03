@@ -107,6 +107,14 @@ public class GsonUtils {
         }
         return map;
     }
+    public static Map<String, String> jsonToMapString(String gsonString) {
+        Map<String, String> map = null;
+        if (gson != null) {
+            map = gson.fromJson(gsonString, new TypeToken<Map<String, String>>() {
+            }.getType());
+        }
+        return map;
+    }
 
     /**
      * 专门针对后台奇葩数据集，明明是数组对象，非要做成map键值对,
