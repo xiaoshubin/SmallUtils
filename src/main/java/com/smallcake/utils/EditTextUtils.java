@@ -108,5 +108,40 @@ public class EditTextUtils {
 
     }
 
+    /**
+     * 设置小数位
+     * @param editText
+     */
+    public static void setDecimalPlaces(final EditText editText, final int number){
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence cs, int start, int before, int count) {
+                String s = cs.toString();
+                if (s.contains(".")){
+                    if (s.length() - s.indexOf(".") > number+1) {//indexOf索引从0开始数
+                        s = s.substring(0,s.indexOf(".") + number+1);
+                        editText.setText(s);//去掉多于位数数字，重新设置字符
+                        editText.setSelection(s.length());//光标到最后
+                    }
+                    //如果用户第一位输入的是【.】,则前面加0
+                    if (s.trim().length()==1){
+                        editText.setText("0.");
+                        editText.setSelection(2);
+                    }
+                }
+                //如果第一位输入的是0，第二位不是小数点,那么直接去掉前面的0，如08，直接变成8
+                if (s.startsWith("0")&&s.trim().length()>1&&s.indexOf(".")!=1){
+                    editText.setText(s.subSequence(1, 2));
+                    editText.setSelection(1);
+
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
+
+    }
 
 }

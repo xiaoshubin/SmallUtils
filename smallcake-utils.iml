@@ -92,16 +92,20 @@
     <orderEntry type="library" exported="" name="support-vector-drawable-27.0.2" level="project" />
     <orderEntry type="library" exported="" name="transition-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.8.1" level="project" />
+    <orderEntry type="library" exported="" name="support-vector-drawable-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="runtime-1.0.3" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-27.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-core-ui-27.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-compat-27.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-27.0.2" level="project" />
     <orderEntry type="library" exported="" name="design-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-27.0.2" level="project" />
+    <orderEntry type="library" exported="" name="support-compat-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-27.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="animated-vector-drawable-26.0.0-alpha1" level="project" />
   </component>
 </module>

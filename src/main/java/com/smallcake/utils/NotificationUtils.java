@@ -19,7 +19,7 @@ public class NotificationUtils {
     /**
      * once or twice
      * @param context
-     * @param ticker
+     * @param ticker setTicker()设置的是通知时在状态栏显示的通知内容，一般是一段文字，例如在状态栏显示“您有一条短信，待查收”。
      * @param smallIcon
      * @param title
      * @param msg
