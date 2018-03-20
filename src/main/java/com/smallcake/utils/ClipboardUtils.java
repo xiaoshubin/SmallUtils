@@ -1,0 +1,39 @@
+package com.smallcake.utils;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.text.TextUtils;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
+
+/**
+ * MyApplication --  com.smallcake.utils
+ * Created by Small Cake on  2018/3/20 14:21.
+ * 剪贴板工具类
+ */
+
+public class ClipboardUtils {
+
+    public static void copy(Context context, String msg) {
+        if (TextUtils.isEmpty(msg)) {
+            T.showLong("复制的内容为空！");
+            return;
+        }
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText(null, msg);
+        cm.setPrimaryClip(clipData);
+        T.showLong("【" + msg + "】已复制到剪贴板");
+    }
+
+    public static String paste(Context context) {
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
+        ClipData cd2 = cm.getPrimaryClip();
+        if (cd2 == null || cd2.getItemAt(0) == null) {
+            T.showLong("你的剪贴板内容为空，请先复制相关内容！");
+            return null;
+        }
+        String s = cd2.getItemAt(0).getText().toString();
+        return s;
+    }
+}
