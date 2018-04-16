@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 
 public class FloatUtils {
     /**
+     * 相乘
      * 两个float的高精度算法
      * @param f1
      * @param f2
@@ -18,5 +19,17 @@ public class FloatUtils {
         BigDecimal b1 = new BigDecimal(Float.toString(f1));
         BigDecimal b2 = new BigDecimal(Float.toString(f2));
         return b1.multiply(b2).floatValue();
+    }
+
+    /**
+     * 想除
+     * @param f1
+     * @param f2
+     * @return
+     */
+    public static float divide(float f1,float f2){
+        BigDecimal b1 = new BigDecimal(Float.toString(f1));
+        BigDecimal b2 = new BigDecimal(Float.toString(f2));
+        return b1.divide(b2).floatValue();
     }
 }

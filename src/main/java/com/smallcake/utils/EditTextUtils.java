@@ -6,6 +6,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * MyApplication --  com.smallcake.utils
  * Created by Small Cake on  2017/8/24 11:09.
@@ -142,6 +145,25 @@ public class EditTextUtils {
             public void afterTextChanged(Editable editable) {}
         });
 
+    }
+
+    /**
+     * 是纯数字
+     */
+    public static boolean isJustNumber(EditText editText){
+        String str = editText.getText().toString().trim().replaceAll(" ", "");
+        Pattern p = Pattern.compile("[0-9]*");
+        Matcher m = p.matcher(str);
+        return m.matches();
+    }
+    /**
+     * 是纯字母
+     */
+    public static boolean isJustLetter(EditText editText){
+        String str = editText.getText().toString().trim().replaceAll(" ", "");
+        Pattern p = Pattern.compile("[a-zA-Z]");
+        Matcher m = p.matcher(str);
+        return m.matches();
     }
 
 }
