@@ -17,7 +17,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_below="@+id/view_line"
-        android:text="确定"
+        android:text="@string/confirm"
         android:textColor="#037BFF"
         android:id="@+id/btn_ok"
         android:layout_height="wrap_content"

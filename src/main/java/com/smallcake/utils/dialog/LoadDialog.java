@@ -11,12 +11,14 @@ import com.smallcake.utils.R;
 
 public class LoadDialog extends Dialog {
 	String text;
+	Context mContext;
+	public LoadDialog(Context context) {
+		this(context, "");
+	}
 	public LoadDialog(Context context, String text) {
 		super(context, R.style.Theme_Loading_Dialog);
 		this.text = text;
-	}
-	public LoadDialog(Context context) {
-		super(context, R.style.Theme_Loading_Dialog);
+		this.mContext = context;
 	}
 
 	@Override
@@ -24,7 +26,7 @@ public class LoadDialog extends Dialog {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.smallcake_utils_loading_dialog);
 		setCanceledOnTouchOutside(false);
-		((TextView)findViewById(R.id.tv_load_dialog)).setText(TextUtils.isEmpty(text)?"数据加载中...":text);
+		((TextView)findViewById(R.id.tv_load_dialog)).setText(TextUtils.isEmpty(text)?mContext.getString(R.string.loading):text);
 	}
 	
 }

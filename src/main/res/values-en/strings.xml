@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading">Loading...</string>
+    <string name="data_is_null">Content is null！</string>
+    <string name="copy_success">Copy success!</string>
+    <string name="your_clipboard_is_null">Your clipboard is empty, please copy the relevant content first.</string>
+    <string name="confirm">Ok</string>
+    <string name="cancle">Cancle</string>
+    <string name="link_is_empty">Link is empty！</string>
+</resources>

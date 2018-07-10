@@ -3,6 +3,7 @@ package com.smallcake.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 
 /**
  * MyApplication --  com.smallcake.utils
@@ -16,6 +17,10 @@ public class WebUtils {
      * @param url
      */
     public static void goWeb(Context context, String url){
+        if (TextUtils.isEmpty(url)){
+            T.showLong(context.getString(R.string.link_is_empty));
+            return;
+        }
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         Uri content_url = Uri.parse(url);

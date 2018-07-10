@@ -17,20 +17,21 @@ public class ClipboardUtils {
 
     public static void copy(Context context, String msg) {
         if (TextUtils.isEmpty(msg)) {
-            T.showLong("复制的内容为空！");
+            T.showLong(context.getString(R.string.data_is_null));
             return;
         }
         ClipboardManager cm = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(null, msg);
         cm.setPrimaryClip(clipData);
-        T.showLong("【" + msg + "】已复制到剪贴板");
+        T.showLong(context.getString(R.string.copy_success));
     }
 
     public static String paste(Context context) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(CLIPBOARD_SERVICE);
         ClipData cd2 = cm.getPrimaryClip();
         if (cd2 == null || cd2.getItemAt(0) == null) {
-            T.showLong("你的剪贴板内容为空，请先复制相关内容！");
+            
+            T.showLong(context.getString(R.string.your_clipboard_is_null));
             return null;
         }
         String s = cd2.getItemAt(0).getText().toString();

@@ -13,7 +13,8 @@ import java.lang.reflect.Field;
 
 public class AppUtils {
     /**
-     * get this App install package name
+     * get this App install package name(applicationId)
+     *
      * @return  com.cake.page
      */
     public static String getAppPackageName() {
@@ -24,13 +25,13 @@ public class AppUtils {
      * get string app version
      */
     public static String getVersionName() {
-        String versionName = "";
+        String versionName = "1.0";
         try {
             PackageManager pm = SmallUtils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(SmallUtils.getApp().getPackageName(), 0);
             versionName = pi.versionName;
             if (versionName == null || versionName.length() <= 0) {
-                return "";
+                return "1.0";
             }
         } catch (Exception e) {
             e.printStackTrace();
