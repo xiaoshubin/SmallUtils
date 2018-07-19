@@ -34,15 +34,4 @@
         <item name="android:windowEnterAnimation">@anim/down_in</item>
         <item name="android:windowExitAnimation">@anim/top_out</item>
     </style>
-    <!-- 自动换行控件-->
-    <declare-styleable name="AutoNewLineLayout">
-        <attr name="horizontalSpace" format="dimension|reference"/>
-        <attr name="vertivalSpace" format="dimension|reference"/>
-    </declare-styleable>
-    <!--上线滚动控件-->
-    <declare-styleable name="VerticalScrollLayout">
-        <attr name="vsl_animDuration" format="integer" />
-        <attr name="vsl_sleepTime" format="integer" />
-        <attr name="vsl_isCusDuration" format="boolean" />
-    </declare-styleable>
 </resources>
