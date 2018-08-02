@@ -3,7 +3,6 @@ package com.smallcake.utils;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.support.v7.app.NotificationCompat;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -26,7 +25,7 @@ public class NotificationUtils {
      */
     public static void showNotice(Context context, String ticker, int smallIcon, CharSequence title, CharSequence msg){
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = new NotificationCompat.Builder(context)
+        Notification notification = new android.support.v7.app.NotificationCompat.Builder(context)
                 .setTicker(ticker)
                 .setSmallIcon(smallIcon)
                 .setContentTitle(title)
@@ -49,7 +48,7 @@ public class NotificationUtils {
      */
     public static void showNoticeProgress(Context context, int smallIcon, CharSequence title, CharSequence msg,int progress){
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = new NotificationCompat.Builder(context)
+        Notification notification = new android.support.v7.app.NotificationCompat.Builder(context)
                 .setSmallIcon(smallIcon)
                 .setContentTitle(title)
                 .setWhen(System.currentTimeMillis())
