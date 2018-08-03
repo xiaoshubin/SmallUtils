@@ -18,7 +18,7 @@ public class WebUtils {
      */
     public static void goWeb(Context context, String url){
         if (TextUtils.isEmpty(url)){
-            T.showLong(context.getString(R.string.link_is_empty));
+            ToastUtil.showLong(context.getString(R.string.link_is_empty));
             return;
         }
         Intent intent = new Intent();

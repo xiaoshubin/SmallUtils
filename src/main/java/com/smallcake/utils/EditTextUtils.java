@@ -65,10 +65,10 @@ public class EditTextUtils {
             if (TextUtils.isEmpty(str)) {
                 if (!TextUtils.isEmpty(hintStr)){
                     editText.setError( hintStr);
-                    T.showLong(hintStr);
+                    ToastUtil.showLong(hintStr);
                 }else{
                     editText.setError("未填写");
-                    T.showLong("有选项未填写");
+                    ToastUtil.showLong("有选项未填写");
                 }
 
                 return true;
