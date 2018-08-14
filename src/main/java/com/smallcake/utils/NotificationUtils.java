@@ -25,7 +25,7 @@ public class NotificationUtils {
      */
     public static void showNotice(Context context, String ticker, int smallIcon, CharSequence title, CharSequence msg){
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = new android.support.v7.app.NotificationCompat.Builder(context)
+        Notification notification = new android.support.v4.app.NotificationCompat.Builder(context)
                 .setTicker(ticker)
                 .setSmallIcon(smallIcon)
                 .setContentTitle(title)
@@ -48,7 +48,7 @@ public class NotificationUtils {
      */
     public static void showNoticeProgress(Context context, int smallIcon, CharSequence title, CharSequence msg,int progress){
         NotificationManager manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        Notification notification = new android.support.v7.app.NotificationCompat.Builder(context)
+        Notification notification = new android.support.v4.app.NotificationCompat.Builder(context)
                 .setSmallIcon(smallIcon)
                 .setContentTitle(title)
                 .setWhen(System.currentTimeMillis())

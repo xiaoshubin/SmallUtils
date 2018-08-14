@@ -27,7 +27,8 @@ public abstract class CakeBaseAdapter<T> extends BaseAdapter {
 	}
 
 
-	@Override
+
+    @Override
 	public int getCount() {
 		if (listDatas!=null&&listDatas.size()>0) {
 			return listDatas.size();
