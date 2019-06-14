@@ -1,81 +1,29 @@
 apply plugin: 'com.android.library'
 
-
-//apply plugin: 'com.novoda.bintray-release'
-//publish {
-//    userOrg = 'xiaoshubin'          //bintray注册的用户名
-//    groupId = 'com.smallcake.utils' //compile引用时的第1部分groupId
-//    artifactId = 'small-utils'       //compile引用时的第2部分项目名
-//    publishVersion = '1.0.0'        //compile引用时的第3部分版本号
-//    desc = 'This is a small utils'
-//    website = 'https://github.com/xiaoshubin/SmallUtils'
-//}
-
-ext {
-    PUBLISH_GROUP_ID = 'com.smallcake.utils'
-    PUBLISH_ARTIFACT_ID = 'small-utils'
-    PUBLISH_VERSION = '1.0.0'
-}
-
-
 android {
-    publishNonDefault true
-    compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    compileSdkVersion 28
+
+
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
     buildTypes {
         release {
-            minifyEnabled false
-            useProguard false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    tasks.withType(Javadoc) {
-        options {
-            encoding "UTF-8"
-            charSet 'UTF-8'
-            links "http://docs.oracle.com/javase/7/docs/api"
-        }
-    }
 
 }
-
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.android.support:support-v4:27.0.2'
-    compile 'com.android.support:design:27.0.2'
-    compile 'com.google.code.gson:gson:2.8.1'
-
-    //For Lifecycles, LiveData, and ViewModel
-//    compile "android.arch.lifecycle:runtime:1.0.0-alpha1"
-//    compile "android.arch.lifecycle:extensions:1.0.0-alpha1"
-//    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha1"
-//
-//    //For Room
-//    compile "android.arch.persistence.room:runtime:1.0.0-alpha1"
-//    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha1"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
-
-configurations {
-    allDebug
-    allRelease
-}
-
-//apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-
-
-
-
-
-
-
-
