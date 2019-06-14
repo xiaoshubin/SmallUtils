@@ -1,10 +1,4 @@
 <resources>
     <string name="app_name">small_utils</string>
-    <string name="loading">数据加载中...</string>
-    <string name="data_is_null">复制的内容为空！</string>
-    <string name="copy_success">已复制</string>
-    <string name="your_clipboard_is_null">你的剪贴板内容为空，请先复制相关内容！</string>
-    <string name="confirm">确定</string>
-    <string name="cancle">取消</string>
-    <string name="link_is_empty">链接地址为空！</string>
+    <string name="data_loading">数据加载中...</string>
 </resources>
