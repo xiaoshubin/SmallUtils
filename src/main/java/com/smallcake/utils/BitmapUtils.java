@@ -3,8 +3,15 @@ package com.smallcake.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.util.Log;
+import android.view.View;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -44,12 +51,11 @@ public class BitmapUtils {
 
     /**
      * 从资源id中获取Bitmap
-     * @param context
      * @param res
      * @return
      */
-    public static Bitmap getBitmapRes(Context context,int res){
-       return BitmapFactory.decodeResource(context.getResources(), res);
+    public static Bitmap getBitmapRes(int res){
+       return BitmapFactory.decodeResource(SmallUtils.getApp().getResources(), res);
     }
 
     /**
@@ -192,5 +198,40 @@ public class BitmapUtils {
         InputStream in = new ByteArrayInputStream(baos.toByteArray());
         return in;
     }
+    public static Bitmap loadBitmapFromView(View v) {
+        try {
+            int w = v.getMeasuredWidth();
+            int h = v.getMeasuredHeight();
+            Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565);
+            Canvas c = new Canvas(bmp);
+            c.drawColor(Color.WHITE);
+            /** 如果不设置canvas画布为白色，则生成透明 */
+            v.layout(0, 0, w, h);
+            v.draw(c);
+            return bmp;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
+    public static Bitmap drawable2Bitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        } else if (drawable instanceof NinePatchDrawable) {
+            Bitmap bitmap = Bitmap
+                    .createBitmap(
+                            drawable.getIntrinsicWidth(),
+                            drawable.getIntrinsicHeight(),
+                            drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                                    : Bitmap.Config.RGB_565);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                    drawable.getIntrinsicHeight());
+            drawable.draw(canvas);
+            return bitmap;
+        } else {
+            return null;
+        }
+    }
 }

@@ -56,4 +56,3 @@
     public static final android.os.Parcelable$Creator *;
 }
 
--keep class cn.com.smallcake_utils.GsonUtils
