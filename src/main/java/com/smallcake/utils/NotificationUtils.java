@@ -15,6 +15,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
  * show notification
  * just a simple example
  * maybe you can write more each other notice
+ * 新增8.0的兼容性
  */
 
 public class NotificationUtils {
@@ -32,7 +33,6 @@ public class NotificationUtils {
             NotificationChannel channel = new NotificationChannel("测试", title, NotificationManager.IMPORTANCE_LOW);
             manager.createNotificationChannel(channel);
             builder = new NotificationCompat.Builder(context, "测试");
-
         }else {
             builder = new NotificationCompat.Builder(context);
         }
