@@ -6,6 +6,7 @@ some small utils for rapid development
 ```
 compile 'com.smallcake.utils:small-utils:1.0.0'
 ```
+由于这时很早之前写的，很久没更新库了，所以1.0.0和git的部分不一致
 
 # License
 ```
