@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="loading">數據加載中...</string>
+    <string name="loading">加載中...</string>
     <string name="data_is_null">複製的內容為空！</string>
     <string name="copy_success">複製成功</string>
     <string name="your_clipboard_is_null">你的剪貼板內容為空，請先複製相關內容！</string>
     <string name="confirm">確定</string>
     <string name="cancle">取消</string>
     <string name="link_is_empty">链接地址为空！</string>
+    <string name="app_name">小工具</string>
+    <string name="data_loading">數據加載中...</string>
 </resources>
