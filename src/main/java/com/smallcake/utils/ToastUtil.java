@@ -8,6 +8,7 @@ import java.util.TimerTask;
 /**
  * 接受三种类型的msg
  * String ,int ,CharSequence
+ * T改为ToastUtil避免和泛型T冲突
  */
 public class ToastUtil {
 

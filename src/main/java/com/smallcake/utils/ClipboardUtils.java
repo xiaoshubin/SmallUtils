@@ -34,7 +34,12 @@ public class ClipboardUtils {
             ToastUtil.showLong(context.getString(R.string.your_clipboard_is_null));
             return null;
         }
-        String s = cd2.getItemAt(0).getText().toString();
+        String s = null;
+        try {
+            s = cd2.getItemAt(0).getText().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return s;
     }
 }

@@ -7,4 +7,6 @@
     <string name="confirm">Ok</string>
     <string name="cancle">Cancle</string>
     <string name="link_is_empty">Link is empty！</string>
+    <string name="app_name">small_utils</string>
+    <string name="data_loading">Data loading...</string>
 </resources>

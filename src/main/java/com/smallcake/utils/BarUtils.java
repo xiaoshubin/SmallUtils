@@ -22,6 +22,8 @@ import java.lang.reflect.Method;
 /**
  * MyApplication --  com.smallcake.utils
  * Created by Small Cake on  2017/9/29 15:15.
+ * 更完整功能可以使用ImmersionBar这个库
+ * # **[ImmersionBar](https://github.com/gyf-dev/ImmersionBar)**
  */
 
 public class BarUtils {
