@@ -45,4 +45,19 @@
         <attr name="vsl_sleepTime" format="integer" />
         <attr name="vsl_isCusDuration" format="boolean" />
     </declare-styleable>
+        <!-- 橘色的提醒消息 -->
+    <style name="OrangeNoticeText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">#FFF7E9</item>
+        <item name="android:textColor">#FF7229</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
 </resources>
