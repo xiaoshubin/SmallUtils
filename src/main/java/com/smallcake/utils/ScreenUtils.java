@@ -1,11 +1,16 @@
-package com.smallcake.utils;
+package cn.com.smallcake_utils;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.util.*;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 public class ScreenUtils {
@@ -28,18 +33,48 @@ public class ScreenUtils {
         return outMetrics.widthPixels;
     }
 
+    public static int getScreenWidth() {
+        WindowManager wm = (WindowManager) SmallUtils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
+    }
+
     /**
      * 获得屏幕高度
      *
      * @param context
      * @return
+     * 使用 @link getRealHight()更准确
+     *
      */
+    @Deprecated
     public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context
                 .getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics.heightPixels;
+    }
+
+    public static int getScreenHeight() {
+        return getScreenHeight(SmallUtils.getApp());
+    }
+
+
+    /**
+     * 获取屏幕实际高度（也包含虚拟导航栏）
+     *
+     * @param context
+     * @return
+     */
+    public static int getRealHight(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+            windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
+        else windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
     }
 
     /**
@@ -51,7 +86,7 @@ public class ScreenUtils {
         int result = 0;
         int resourceId = SmallUtils.getApp().getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            result =   SmallUtils.getApp().getResources().getDimensionPixelSize(resourceId);
+            result = SmallUtils.getApp().getResources().getDimensionPixelSize(resourceId);
         }
         return result;
     }
@@ -79,6 +114,7 @@ public class ScreenUtils {
 
     /**
      * 前屏幕截图，不包含状态栏
+     *
      * @param activity
      * @return
      */
@@ -100,6 +136,7 @@ public class ScreenUtils {
 
     /**
      * 设置屏幕透明度
+     *
      * @param context
      * @param bgAlpha
      */
@@ -110,10 +147,65 @@ public class ScreenUtils {
     }
 
 
+    /**
+     * 判断是否是全面屏
+     */
+    private volatile static boolean mHasCheckAllScreen;
+    private volatile static boolean mIsAllScreenDevice;
 
+    public static boolean isAllScreenDevice(Context context) {
+        if (mHasCheckAllScreen) {
+            return mIsAllScreenDevice;
+        }
+        mHasCheckAllScreen = true;
+        mIsAllScreenDevice = false;
+        // 低于 API 21的，都不会是全面屏。。。
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return false;
+        }
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager != null) {
+            Display display = windowManager.getDefaultDisplay();
+            Point point = new Point();
+            display.getRealSize(point);
+            float width, height;
+            if (point.x < point.y) {
+                width = point.x;
+                height = point.y;
+            } else {
+                width = point.y;
+                height = point.x;
+            }
+            if (height / width >= 1.97f) {
+                mIsAllScreenDevice = true;
+            }
+        }
+        return mIsAllScreenDevice;
+    }
 
+    /**
+     * 判断全面屏是否启用虚拟键盘
+     * 直接用这个方法，会发现不起作用，需要在 onCreate(Bundle savedInstanceState)方法中加入一下代码：
+     * //设置底部导航栏颜色
+     * if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+     * getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
+     * }
+     */
+    private static final String NAVIGATION = "navigationBarBackground";
 
+    public static boolean isNavigationBarExist(@NonNull Activity activity) {
+        ViewGroup vp = (ViewGroup) activity.getWindow().getDecorView();
+        if (vp != null) {
+            for (int i = 0; i < vp.getChildCount(); i++) {
+                vp.getChildAt(i).getContext().getPackageName();
 
+                if (vp.getChildAt(i).getId() != -1 && NAVIGATION.equals(activity.getResources().getResourceEntryName(vp.getChildAt(i).getId()))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
 }
