@@ -1,4 +1,4 @@
-package com.smallcake.utils;
+package cn.com.smallcake_utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v4.content.FileProvider;
 
 import java.io.File;
@@ -13,8 +14,7 @@ import java.lang.reflect.Field;
 
 public class AppUtils {
     /**
-     * get this App install package name(applicationId)
-     *
+     * get this App install package name
      * @return  com.cake.page
      */
     public static String getAppPackageName() {
@@ -25,13 +25,13 @@ public class AppUtils {
      * get string app version
      */
     public static String getVersionName() {
-        String versionName = "1.0";
+        String versionName = "";
         try {
             PackageManager pm = SmallUtils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(SmallUtils.getApp().getPackageName(), 0);
             versionName = pi.versionName;
             if (versionName == null || versionName.length() <= 0) {
-                return "1.0";
+                return "";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,7 +95,6 @@ public class AppUtils {
         L.i("安装路径=="+downloadApk);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Uri apkUri = FileProvider.getUriForFile(context, AppUtils.getAppPackageName()+".fileprovider", file);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
         } else {
@@ -126,6 +125,17 @@ public class AppUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void goIntentSetting() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", SmallUtils.getApp().getPackageName(), null);
+        intent.setData(uri);
+        try {
+            SmallUtils.getApp().startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
