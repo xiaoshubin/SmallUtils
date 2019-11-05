@@ -2,9 +2,10 @@ package com.smallcake.utils.custom;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * MyApplication --  com.smallcake.utils.custom

@@ -1,4 +1,4 @@
-package cn.com.smallcake_utils;
+package com.smallcake.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,12 +6,13 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+
+import androidx.annotation.NonNull;
 
 public class ScreenUtils {
 

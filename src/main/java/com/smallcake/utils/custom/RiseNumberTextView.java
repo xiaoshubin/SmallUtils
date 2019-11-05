@@ -4,6 +4,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
@@ -13,7 +15,7 @@ import java.text.DecimalFormat;
  * Created by Small Cake on  2017/5/20 11:18.
  */
 
-public class RiseNumberTextView extends android.support.v7.widget.AppCompatTextView implements RiseNumberBase{
+public class RiseNumberTextView extends AppCompatTextView implements RiseNumberBase{
     private static final int STOPPED = 0;
 
     private static final int RUNNING = 1;

@@ -12,11 +12,6 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -27,6 +22,12 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.smallcake.utils.L;
 
 import java.util.ArrayList;
@@ -288,7 +289,8 @@ public class BottomMenuDialog extends BottomSheetDialogFragment implements View.
      * write this dialog for
      * 解决使用BottomSheetDialog时状态栏【电力栏】变黑的问题
      */
-     class BottomSheetDialog extends android.support.design.widget.BottomSheetDialog{
+     class BottomSheetDialog extends com.google.android.material.bottomsheet.BottomSheetDialog{
+
         public BottomSheetDialog(@NonNull Context context) {
             super(context);
             BottomSheetDialogFragment dd;

@@ -8,6 +8,6 @@ package com.smallcake.utils;
 
 public class IdentifierUtil {
     public static int getIdByMipmap(String tag){
-        return SmallUtils.getApp().getResources().getIdentifier(tag, "mipmap", AppUtils.getAppPackageName());
+        return SmallUtils.getApp().getResources().getIdentifier(tag, "mipmap",AppUtils.getAppPackageName());
     }
 }

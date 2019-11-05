@@ -5,17 +5,17 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
-import android.service.notification.StatusBarNotification;
-import android.support.annotation.ColorInt;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.lang.reflect.Method;
 
@@ -453,7 +453,7 @@ public class BarUtils {
      */
     private static void invokePanels(@NonNull final Context context, final String methodName) {
         try {
-            Object service = context.getSystemService("statusbar");
+            Object service = context.getSystemService(Context.STATUS_BAR_SERVICE);
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
             Method expand = statusBarManager.getMethod(methodName);
             expand.invoke(service);

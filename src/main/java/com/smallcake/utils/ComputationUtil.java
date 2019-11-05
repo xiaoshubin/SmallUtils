@@ -1,6 +1,7 @@
 package com.smallcake.utils;
 
-import android.support.annotation.IntRange;
+
+import androidx.annotation.IntRange;
 
 import java.math.BigDecimal;
 

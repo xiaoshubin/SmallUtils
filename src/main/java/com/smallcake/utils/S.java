@@ -1,7 +1,8 @@
 package com.smallcake.utils;
 
-import android.support.design.widget.Snackbar;
 import android.view.View;
+
+import com.google.android.material.snackbar.Snackbar;
 
 /**
  * MyApplication --  cq.cake.util
