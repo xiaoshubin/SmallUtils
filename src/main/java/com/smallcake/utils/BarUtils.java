@@ -453,7 +453,7 @@ public class BarUtils {
      */
     private static void invokePanels(@NonNull final Context context, final String methodName) {
         try {
-            Object service = context.getSystemService(Context.STATUS_BAR_SERVICE);
+            Object service = context.getSystemService("statusbar");
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
             Method expand = statusBarManager.getMethod(methodName);
             expand.invoke(service);
