@@ -1,5 +1,6 @@
 package com.smallcake.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -128,12 +129,12 @@ public class AppUtils {
         return null;
     }
 
-    public static void goIntentSetting() {
+    public static void goIntentSetting(Activity activity) {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", SmallUtils.getApp().getPackageName(), null);
         intent.setData(uri);
         try {
-            SmallUtils.getApp().startActivity(intent);
+            activity.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }
